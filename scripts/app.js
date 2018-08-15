@@ -18,10 +18,13 @@ function onSuccess (response) {
   $.each(quakesArray , function () {
     markerMaker(this.geometry.coordinates);
     var title = this.properties.title 
-
+    var resArray = title.split(' ');
+    //console.log(resArray);
+    var location = resArray.splice(6, resArray.length);
+    
     var dt = new Date();
     var time = Math.floor((((dt.getTime() - this.properties.time)/1000) / 60) / 60 ) ;
-    $('#info').append( `<p> ${title}, ${time} hours ago </p>`)
+    $('#info').append( `<p> ${location.join(' ')}, ${time} hours ago </p>`)
   })  
 }
 
